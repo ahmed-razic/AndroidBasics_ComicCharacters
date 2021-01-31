@@ -3,6 +3,7 @@ package com.example.android.comiccharacters;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -15,15 +16,19 @@ public class DCActivity extends AppCompatActivity {
 
         ArrayList<Character> dcCharacters = new ArrayList<Character>();
 
-        dcCharacters.add(new Character("Aquaman", "Short description of character", R.drawable.dc_aquaman_small, R.raw.dc_aquaman));
-        dcCharacters.add(new Character("Batman", "Short description of character", R.drawable.dc_batman_small, R.raw.dc_batman));
-        dcCharacters.add(new Character("Catwoman", "Short description of character", R.drawable.dc_catwoman_small, R.raw.dc_catwoman));
-        dcCharacters.add(new Character("Cyclops", "Short description of character", R.drawable.dc_cyclops_small, R.raw.dc_cyclops));
-        dcCharacters.add(new Character("Flash", "Short description of character", R.drawable.dc_flash_small, R.raw.dc_flash));
-        dcCharacters.add(new Character("Green Lantern", "Short description of character", R.drawable.dc_green_lantern_small, R.raw.dc_green_lantern));
-        dcCharacters.add(new Character("Joker", "Short description of character", R.drawable.dc_joker_small, R.raw.dc_joker));
-        dcCharacters.add(new Character("Superman", "Short description of character", R.drawable.dc_superman_small, R.raw.dc_superman));
-        dcCharacters.add(new Character("The Thing", "Short description of character", R.drawable.dc_the_thing_small, R.raw.dc_the_thing));
-        dcCharacters.add(new Character("Wonder Woman", "Short description of character", R.drawable.dc_wonder_woman_small, R.raw.dc_wonder_woman));
+        dcCharacters.add(new Character("Aquaman", "See more details on web", R.drawable.dc_aquaman_small, R.raw.dc_aquaman, "https://en.wikipedia.org/wiki/Aquaman"));
+        dcCharacters.add(new Character("Batman", "See more details on web", R.drawable.dc_batman_small, R.raw.dc_batman, "https://en.wikipedia.org/wiki/Batman"));
+        dcCharacters.add(new Character("Catwoman", "See more details on web", R.drawable.dc_catwoman_small, R.raw.dc_catwoman, "https://en.wikipedia.org/wiki/Catwoman"));
+        dcCharacters.add(new Character("Cyclops", "See more details on web", R.drawable.dc_cyclops_small, R.raw.dc_cyclops, "https://en.wikipedia.org/wiki/Cyclops_(Marvel_Comics)"));
+        dcCharacters.add(new Character("Flash", "See more details on web", R.drawable.dc_flash_small, R.raw.dc_flash, "https://en.wikipedia.org/wiki/Flash_(DC_Comics_character)"));
+        dcCharacters.add(new Character("Green Lantern", "See more details on web", R.drawable.dc_green_lantern_small, R.raw.dc_green_lantern, "https://en.wikipedia.org/wiki/Green_Lantern"));
+        dcCharacters.add(new Character("Joker", "See more details on web", R.drawable.dc_joker_small, R.raw.dc_joker, "https://en.wikipedia.org/wiki/The_Joker_(comic_book)"));
+        dcCharacters.add(new Character("Superman", "See more details on web", R.drawable.dc_superman_small, R.raw.dc_superman, "https://en.wikipedia.org/wiki/Superman_(comic_book)"));
+        dcCharacters.add(new Character("Bane", "See more details on web", R.drawable.dc_bane_small, R.raw.dc_bane, "https://en.wikipedia.org/wiki/Bane_(DC_Comics)"));
+        dcCharacters.add(new Character("Wonder Woman", "See more details on web", R.drawable.dc_wonder_woman_small, R.raw.dc_wonder_woman, "https://en.wikipedia.org/wiki/Wonder_Woman"));
+
+        ListView listView = findViewById(R.id.list_of_characters);
+        CharacterAdapter adapter = new CharacterAdapter(DCActivity.this, dcCharacters, R.color.blue_dc);
+        listView.setAdapter(adapter);
     }
 }
