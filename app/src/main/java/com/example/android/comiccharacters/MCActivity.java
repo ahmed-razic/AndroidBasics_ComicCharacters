@@ -82,7 +82,7 @@ public class MCActivity extends AppCompatActivity {
                     }
 
                 } else if (viewId == R.id.play_image) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, currentCharacter.getmYoutubeLinkBonelli());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, currentCharacter.getYoutubeLinkMC());
                     startActivity(intent);
                 } else if( viewId == R.id.item_description) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, currentCharacter.getWebLink());
