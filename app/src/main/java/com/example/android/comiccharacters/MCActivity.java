@@ -2,12 +2,36 @@ package com.example.android.comiccharacters;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class MCActivity extends AppCompatActivity {
+
+    MediaPlayer mMediaPlayer;
+    AudioManager mAudioManager;
+
+    AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            if(focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                mMediaPlayer.pause();
+                mMediaPlayer.seekTo(0);
+            } else if(focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                mMediaPlayer.start();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                mMediaPlayer.stop();
+                releaseMediaPlayer();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +54,54 @@ public class MCActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list_of_characters);
         CharacterAdapter adapter = new CharacterAdapter(MCActivity.this, mcCharacters, R.color.red_mc);
         listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+                Character currentCharacter = mcCharacters.get(position);
+
+                long viewId = view.getId();
+                if (viewId == R.id.item_image) {
+                    releaseMediaPlayer();
+
+                    int result = mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                    if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        mMediaPlayer = MediaPlayer.create(MCActivity.this, currentCharacter.getAudioResourceId());
+                        mMediaPlayer.start();
+
+                        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                releaseMediaPlayer();
+                            }
+                        });
+                    }
+
+                } else if (viewId == R.id.play_image) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, currentCharacter.getmYoutubeLinkBonelli());
+                    startActivity(intent);
+                } else if( viewId == R.id.item_description) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, currentCharacter.getWebLink());
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer(){
+        if(mMediaPlayer != null) {
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 }

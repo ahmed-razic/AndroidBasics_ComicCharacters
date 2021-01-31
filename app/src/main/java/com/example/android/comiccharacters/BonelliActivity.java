@@ -107,7 +107,6 @@ public class BonelliActivity extends AppCompatActivity {
             mMediaPlayer.release();
             mMediaPlayer = null;
         }
-
     }
 }
 
