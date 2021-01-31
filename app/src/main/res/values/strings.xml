@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Comics characters</string>
+    <string name="dc_textview">DC Comics</string>
+    <string name="mc_textview">MC Comics</string>
+    <string name="bon_textview">Bonelli Comics</string>
+    <string name="classic_textview">Classic Comics</string>
+    <string name="character_image">character_image</string>
+    <string name="play_audio_image">play_audio_image</string>
+</resources>

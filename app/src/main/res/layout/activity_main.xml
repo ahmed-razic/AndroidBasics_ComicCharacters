@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E4E4E4"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/dc_comics"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:background="@color/blue_dc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:id="@+id/dc_comics_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/mc_textview"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding"
+            style="@style/category_activity"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mc_comics"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:background="@color/red_mc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dc_comics" >
+
+        <TextView
+            android:id="@+id/mc_comics_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/dc_textview"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding"
+            style="@style/category_activity"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/bonelli_comics"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:background="@color/green_bon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mc_comics" >
+
+        <TextView
+            android:id="@+id/bon_comics_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/bon_textview"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding"
+            style="@style/category_activity"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/classic_comics"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:background="@color/brown_classic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bonelli_comics" >
+
+        <TextView
+            android:id="@+id/classic_comics_textview"
+            style="@style/category_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding"
+            android:text="@string/classic_textview" />
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
