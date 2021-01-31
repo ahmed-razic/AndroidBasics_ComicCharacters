@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Comics characters</string>
+    <string name="app_name">COMIC CHARACTERS</string>
     <string name="dc_textview">DC Comics</string>
     <string name="mc_textview">MC Comics</string>
     <string name="bon_textview">Bonelli Comics</string>

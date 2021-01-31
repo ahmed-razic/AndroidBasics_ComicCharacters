@@ -63,7 +63,7 @@ public class ClassicActivity extends AppCompatActivity {
                 Character currentCharacter = classicCharacters.get(position);
 
                 long viewId = view.getId();
-                if (viewId == R.id.item_image) {
+                if (viewId == R.id.item_image && currentCharacter.hasAudio()) {
                     releaseMediaPlayer();
 
                     int result = mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
